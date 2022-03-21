@@ -1,0 +1,42 @@
+nav{
+    display: flex;
+    
+    align-content: center;
+    background-image: linear-gradient(rgb(184, 179, 179),rgb(165, 136, 136));
+}
+
+#tituloGovinda{
+    color: white;
+}
+
+
+.containerLogo{
+    width: 10%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content:left;
+    padding: 0 5%;
+    align-self: center;
+}
+
+h1{
+    width: 50%;
+}
+
+.containerLinks{
+    
+    width: 40%;
+    display: flex;
+    justify-content:right;
+    align-items: center;
+}
+a{
+    padding-right: 21px;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: black;
+}
