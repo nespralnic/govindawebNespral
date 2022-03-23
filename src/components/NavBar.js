@@ -1,24 +1,33 @@
 import React from "react";
 import './NavBar.css';
-import logo from '../img/logocart.png';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-const NavBar = () => {
+import logo from '../img/logo.svg';
+import CartWidget from "./CartWidget";
 
+
+const NavBar = (props) => {
+    console.log(props.id);
+    
     return (
         
         
         <nav>
             <img className="containerLogo" src={logo}></img>
-            <h1><span id="tituloGovinda">Govinda</span> Tienda Online</h1>
+            <h1><span id="tituloGovinda">Govinda</span> Tienda Online. </h1>
             
             <div className="containerLinks">
-                <a href="#">contacto</a>
-                <a href="#">producto</a>
-                <a href="#">nosotros</a>
-                <ShoppingCartIcon />
+                
+                
+                {props.links.map((element,indice)=>{
+                    return <a key={indice} href="#">{element}</a> 
+                })}  
+                
+                <CartWidget />
             </div>
         </nav>
-        
+        /*
+        {props.children[0]}
+        {props.children[1]}
+        */
         )
 }
 

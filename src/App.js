@@ -1,29 +1,23 @@
 import NavBar from './components/NavBar';
-import logo from './logo.svg';
+import ItemListContainer from './components/ItemListContainer';
 import './App.css';
+import { Boton } from './components/Boton';
+import { Title } from './components/Title';
 
 function App() {
+  const name = "alejandro";
+  const links = ["Nosotros","Productos","Contacto"];
+  //o con objeto
+  const linksObj = [{nombre:"Nosotros",tag:"#"},{nombre:"Producto",tag:"#"},{nombre:"Contacto",tag:"#"}];
+
   return (
-    /*<div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>*/
-    <>
-    <NavBar />  
     
+    <>
+    <NavBar id="1" name={name} links={links}> 
+    </NavBar>
+    <ItemListContainer mensaje="Bienvenido a la tienda onlina de Govinda Comidas" />
     </>
+
   );
 }
 
