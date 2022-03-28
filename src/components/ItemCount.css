@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.buttonStyles{
+        font-size: 20px;
+        padding: 5px;
+        height: 40px;
+        width: 20%;
+        text-align: center;
+    }
+
+.displayStyle{
+    font-size: 20px;
+    padding: 5px;
+    height: 28px;
+    width: 60%;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+.contenedorCantidad{
+    display: flex;
+    
+    }
+
+.tituloProducto{
+    width: 100%;
+    height: 28px;
+    text-align: center;
+    
+
+}
+
+.buttonAgregar{
+    width: 100%;
+}    

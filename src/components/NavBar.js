@@ -3,9 +3,10 @@ import './NavBar.css';
 import logo from '../img/logo.svg';
 import CartWidget from "./CartWidget";
 
-
-const NavBar = (props) => {
-    console.log(props.id);
+//const NavBar = (props) => 
+//desestructurado:
+const NavBar = ({id,links}) => {
+    console.log(id);
     
     return (
         
@@ -17,7 +18,7 @@ const NavBar = (props) => {
             <div className="containerLinks">
                 
                 
-                {props.links.map((element,indice)=>{
+                {links.map((element,indice)=>{
                     return <a key={indice} href="#">{element}</a> 
                 })}  
                 
