@@ -5,7 +5,9 @@ import './ItemCount.css';
 const ItemCount = ({stock,inicial,onAdd}) => {
 
 
+
     const [contador,setContador] = useState(inicial);
+    
 
     const sumador = () =>{
         if (contador<stock){
