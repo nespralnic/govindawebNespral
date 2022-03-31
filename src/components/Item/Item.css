@@ -1,0 +1,33 @@
+
+
+.itemContainer{
+    height: 250px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(250, 128, 114, 0.13);
+    box-shadow: 5px 5px 5px rgb(190, 188, 188);
+}
+
+.itemTitle{
+    height: 20%;
+}
+
+.itemPrice{
+    height: 10%;
+}
+
+.itemPicture{
+    height: 60%;
+    
+}
+
+.itemPicture > img{
+    height: 100%;
+    object-fit: cover;
+}
+
+.itemDetalles{
+    height: 10%;
+}

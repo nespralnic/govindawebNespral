@@ -1,13 +1,24 @@
 
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import './ItemCount.css';
 
 const ItemCount = ({stock,inicial,onAdd}) => {
 
-
-
     const [contador,setContador] = useState(inicial);
-    
+
+/*  ------ ejemplo useEffect------
+
+    const [setup,setSetup] = useState(0);
+
+    useEffect( () => {
+        console.log("Se ejecutó use effect");
+        setTimeout(() => {
+            setSetup(setup + 1);
+        }, 1000);
+    },[contador]);
+
+    ----> dentro del return falta el display
+*/  
 
     const sumador = () =>{
         if (contador<stock){
