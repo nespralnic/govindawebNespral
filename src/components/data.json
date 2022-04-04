@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1, 
+        "name": "Hojas verdes",
+        "price": "500", 
+        "pictureUrl":""
+    },
+    {
+        "id": 2, 
+        "name": "Brócoli",
+        "price": "500", 
+        "pictureUrl":""
+    },
+    {
+        "id": 3, 
+        "name": "Hongos",
+        "price": "530", 
+        "pictureUrl":""
+    },
+    {
+        "id": 4, 
+        "name": "Falafel",
+        "price": "470", 
+        "pictureUrl":"/static/media/falafel.f3ce29d7612ca1606b1e.JPG"
+    },
+    {
+        "id": 5, 
+        "name": "Trigo Sarraceno",
+        "price": "500", 
+        "pictureUrl":""
+    },
+    {
+        "id": 6,
+        "name": "Algóndigas",
+        "price": "470", 
+        "pictureUrl":""
+    }
+    
+]

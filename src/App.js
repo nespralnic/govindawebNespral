@@ -1,5 +1,6 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import React, {useState,useEffect} from "react";
 
 import './App.css';
@@ -22,7 +23,7 @@ function App() {
     <NavBar id="1" name={name} links={links}> </NavBar>
     
     <ItemListContainer mensaje="Bienvenido a la tienda online de Govinda Comidas" />
-    
+    <ItemDetailContainer />
     </>
 
   );
