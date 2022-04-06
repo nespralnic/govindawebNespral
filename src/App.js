@@ -1,11 +1,14 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import Cart from './components/Cart/Cart';
+import Error from './components/Error/Error';
 import React, {useState,useEffect} from "react";
 
 import './App.css';
 import { Boton } from './components/Boton';
 import { Title } from './components/Title';
+import { BrowserRouter, Routes, Route} from "react-router-dom"
 
 
 function App() {
@@ -15,15 +18,24 @@ function App() {
   const name = "alejandro";
   const links = ["Nosotros","Productos","Contacto"];
   //o con objeto
-  const linksObj = [{nombre:"Nosotros",tag:"#"},{nombre:"Producto",tag:"#"},{nombre:"Contacto",tag:"#"}];
+  const linksObj = [{name:"Tartas",tag:"categorys/tartas"},{name:"Burgers",tag:"categorys/burgers"},{name:"Contacto",tag:"categorys/contacto"}];
 
   return (
     
     <>
-    <NavBar id="1" name={name} links={links}> </NavBar>
-    
-    <ItemListContainer mensaje="Bienvenido a la tienda online de Govinda Comidas" />
-    <ItemDetailContainer />
+    <BrowserRouter>
+      <NavBar id="1" name={name} links={linksObj}> </NavBar>
+      <Routes>
+        <Route path="/" element={<ItemListContainer mensaje="Bienvenido a la tienda online de Govinda Comidas" />}></Route>
+        <Route path="/categorys/:category" element={<ItemListContainer />}></Route>
+        <Route path="/products/:id" element={<ItemDetailContainer />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="*" element={<Error />}></Route>
+        
+      </Routes>
+      
+      
+    </BrowserRouter>
     </>
 
   );

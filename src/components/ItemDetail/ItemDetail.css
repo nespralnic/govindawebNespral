@@ -6,7 +6,7 @@
     font-family: 'Roboto', sans-serif;
     width: 90vw;
     height: 240px;
-    margin: 0 auto;
+    margin: 54px auto;
     background-color: rgba(250, 128, 114, 0.212);
     display: flex;
 
@@ -40,6 +40,7 @@
 }
 .containerData__ingredientes{
     font-size: 16px;
+    width: 70%;
 }
 
 .containerPrecio{
