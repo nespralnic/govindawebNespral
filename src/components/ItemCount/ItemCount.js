@@ -36,21 +36,20 @@ const ItemCount = ({stock,inicial,onAdd}) => {
     }
 
     const manejadorEnviar = () =>{
-        contador>0 && onAdd(contador)  
+        contador>0 && onAdd(contador,true)  
     }
         
 
     return(
         <>
         <div className="container">
-            <div className="tituloProducto">Producto equis</div>
             <div className="contenedorCantidad">
                 <button className="buttonStyles" onClick={restador}  >-</button>
                 <div className="displayStyle" >{contador}</div>
                 <button className="buttonStyles" onClick={sumador}  >+</button>   
             </div>
             <div>
-                <button className="buttonAgregar" onClick={manejadorEnviar} > ENVIAR</button>
+                <button className="buttonAgregar" onClick={manejadorEnviar} > AGREGAR AL CARRITO</button>
             </div>
         </div>
         </>

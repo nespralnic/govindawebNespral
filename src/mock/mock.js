@@ -1,4 +1,4 @@
-import foto from '../img/falafel.JPG';
+
 
 export  const productosIniciales = [
     {   
@@ -23,7 +23,7 @@ export  const productosIniciales = [
         id: 3, category:"tartas", 
         name: "Hongos", 
         price: "530", 
-        pictureUrl:foto,
+        pictureUrl:"",
         descripcion:"20 Mini-hamburguesas. Vegan. Sin TACC.",
         ingredientes: "Garbanzos, cebolla, ajo, perejil, cilantro, limón."},
     {   
@@ -40,7 +40,7 @@ export  const productosIniciales = [
         category:"burgers", 
         name: "Trigo Sarraceno", 
         price: "500", 
-        pictureUrl:foto,
+        pictureUrl:"",
         descripcion:"20 Mini-hamburguesas. Vegan. Sin TACC.",
         ingredientes: "Garbanzos, cebolla, ajo, perejil, cilantro, limón."},
     {
@@ -48,7 +48,7 @@ export  const productosIniciales = [
         category:"burgers", 
         name: "Albóndigas", 
         price: "470", 
-        pictureUrl:foto,
+        pictureUrl:"",
         descripcion:"20 Mini-hamburguesas. Vegan. Sin TACC.",
         ingredientes: "Garbanzos, cebolla, ajo, perejil, cilantro, limón."}
 ]

@@ -2,19 +2,13 @@ import React, {useEffect, useState} from "react";
 import './ItemDetailContainer.css';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import ClipLoader from "react-spinners/ClipLoader"
+import { productosIniciales } from "../../mock/mock";
+import { useParams } from "react-router-dom";
 
-const producto = 
-    {   id: 4, 
-        name: "Falafel", 
-        price: "470", 
-        pictureUrl:"/static/media/falafel.f3ce29d7612ca1606b1e.JPG",
-        descripcion:"20 Mini-hamburguesas. Vegan. Sin TACC.",
-        ingredientes: "Garbanzos, cebolla, ajo, perejil, cilantro, limón."
-    };
 
 const promesa = new Promise((resolve,reject) =>{
     setTimeout(() => {
-        resolve(producto);
+        resolve(productosIniciales);
     }, 4000);
 });
 
@@ -22,13 +16,19 @@ const promesa = new Promise((resolve,reject) =>{
 const ItemDetailContainer = () =>{
     
 
+
 const [item,setItem] = useState([]);
 const [show,setShow] = useState(false);
 
+const {id} = useParams();
+
+//console.log(id);
+
 useEffect( () => {
         
-        promesa.then( (item) => {
-            setItem(item);
+        promesa.then( (productos) => {
+            const productoFiltrado = productos.filter(prod => prod.id == id);
+            setItem(productoFiltrado[0]);
             setShow(!show)
         }).catch( () => {
             console.log("todo mal")
@@ -37,7 +37,7 @@ useEffect( () => {
 
     
 },[]);
-    console.log(item);
+
     return(
         <>
         
