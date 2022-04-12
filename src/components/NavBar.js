@@ -1,6 +1,6 @@
 import React from "react";
 import './NavBar.css';
-import logo from '../img/logo.svg';
+//import logo from '../img/logo.svg';
 import CartWidget from "./CartWidget";
 import { Link, NavLink } from "react-router-dom"
 
@@ -14,8 +14,9 @@ const NavBar = ({id,links}) => {
         
         <nav>
             <NavLink className="containerLogo" to="/">
-                <img  src={logo}></img>
+                <img  src='../../img/logo.svg'></img>
             </NavLink>
+
             
             <h1><span id="tituloGovinda">Govinda</span> Tienda Online. </h1>
             
@@ -28,6 +29,7 @@ const NavBar = ({id,links}) => {
                 <NavLink to="/cart">
                     <CartWidget />
                 </NavLink>
+
                 
             </div>
         </nav>

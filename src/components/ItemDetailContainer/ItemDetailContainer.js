@@ -16,12 +16,13 @@ const promesa = new Promise((resolve,reject) =>{
 const ItemDetailContainer = () =>{
     
 
+
 const [item,setItem] = useState([]);
 const [show,setShow] = useState(false);
 
 const {id} = useParams();
 
-console.log(id);
+//console.log(id);
 
 useEffect( () => {
         

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import './ItemListContainer.css';
-import ItemCount from './ItemCount';
+import ItemCount from './ItemCount/ItemCount';
 import ItemList from './ItemList/ItemList';
 import { productosIniciales } from "../mock/mock";
 import { useParams } from "react-router-dom";
