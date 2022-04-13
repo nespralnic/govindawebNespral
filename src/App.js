@@ -4,6 +4,10 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import Cart from './components/Cart/Cart';
 import Error from './components/Error/Error';
 import React, {useState,useEffect} from "react";
+//context
+import CustomProvider from './context/context';
+
+import { createContext } from 'react';
 
 import './App.css';
 import { Boton } from './components/Boton';
@@ -13,8 +17,6 @@ import { BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
 
-  
-
   const name = "alejandro";
   const links = ["Nosotros","Productos","Contacto"];
   //o con objeto
@@ -23,6 +25,8 @@ function App() {
   return (
     
     <>
+    <CustomProvider>
+
     <BrowserRouter>
       <NavBar id="1" name={name} links={linksObj}> </NavBar>
       <Routes>
@@ -36,6 +40,7 @@ function App() {
       
       
     </BrowserRouter>
+    </CustomProvider>
     </>
 
   );

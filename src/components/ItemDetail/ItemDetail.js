@@ -2,19 +2,29 @@
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 import productosIniciales from '../../mock/mock';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+
 import { Link, NavLink } from 'react-router-dom';
+import { contexto } from '../../context/context'
 
 
+let cantidadIngresada;
 
 const ItemDetail = ({item}) =>{
 
     const [showConfirmar,setShowConfirmar] = useState(false);
+    const {addItem} = useContext(contexto);
 
     const onAdd = (num,click) =>{
             console.log(`Seleccionaste ${num} productos.`);
+            cantidadIngresada = num;
             setShowConfirmar(click)
         }
+    
+    
+    const manejadorEvento = () =>{
+        addItem(item.id, cantidadIngresada,item.name);
+    }
     
     
     return(
@@ -34,7 +44,7 @@ const ItemDetail = ({item}) =>{
                 <ItemCount stock={item.stock} inicial={1} onAdd={onAdd}/>  
                 : <div>
                     <Link to="/cart">
-                        <button className='buttonConfirmar'>CONFIRMAR COMPRA</button>
+                        <button className='buttonConfirmar' onClick={manejadorEvento}>CONFIRMAR COMPRA</button>
                     </Link>
                     
                   </div> 
