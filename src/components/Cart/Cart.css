@@ -1,0 +1,34 @@
+.containerCart{
+    width: fit-content;
+    background-image: linear-gradient(to right,rgb(241, 241, 241),rgb(228, 227, 227));
+    margin: 30px auto;
+    border-radius: 10px;
+    
+}
+
+.link{
+    text-decoration: none;
+    font-size: 14px;
+    color: salmon;
+}
+
+.link:hover{
+    color:rgb(252, 179, 170);
+}
+
+.botonBorrar{
+    border:none;
+    background-color:transparent;
+    color: none;
+    cursor: pointer;
+}
+
+p{
+    margin: 0;
+    padding: 0 15px;
+}
+
+.total{
+    padding-top: 16px;
+    font-size: 24px;
+}

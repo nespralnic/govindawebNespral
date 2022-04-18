@@ -23,7 +23,7 @@ const ItemDetail = ({item}) =>{
     
     
     const manejadorEvento = () =>{
-        addItem(item.id, cantidadIngresada,item.name);
+        addItem(item.id, cantidadIngresada,item.name,item.price);
     }
     
     

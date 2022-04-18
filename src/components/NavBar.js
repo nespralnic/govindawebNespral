@@ -1,7 +1,7 @@
 import React from "react";
 import './NavBar.css';
 //import logo from '../img/logo.svg';
-import CartWidget from "./CartWidget";
+import CartWidget from "../components/CartWidget/CartWidget";
 import { Link, NavLink } from "react-router-dom"
 
 //const NavBar = (props) => 
@@ -24,7 +24,7 @@ const NavBar = ({id,links}) => {
                 
                 
                 {links.map((element,indice)=>{
-                    return <NavLink key={indice} to={element.tag}>{element.name}</NavLink> 
+                    return <NavLink className="links" key={indice} to={element.tag}>{element.name}</NavLink> 
                 })}  
                 <NavLink to="/cart">
                     <CartWidget />

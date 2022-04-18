@@ -1,0 +1,24 @@
+.ShoppingCartIcon{
+    padding: 0 30px;   
+    position:relative;
+    color: white;
+}
+
+.ShoppingCartIcon:hover{
+    color: black;
+}
+
+.circulo{
+    position: absolute;
+    bottom: 20px;
+    left: 46px;
+    background-color: salmon;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+

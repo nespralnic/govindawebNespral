@@ -1,22 +1,44 @@
 import { contexto } from '../../context/context';
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
+import { Link, NavLink } from "react-router-dom"
 
+import "./Cart.css"
 
 
 const Cart = () =>{
 
-    const {itemsCarrito} = useContext(contexto);
+    const {itemsCarrito,deleteItem,update,getCantidad} = useContext(contexto);
 
-    console.log(itemsCarrito);
+    const [carrito,setCarrito] = useState(itemsCarrito);
+
+    const manejarClick = (id,array) =>{
+        const arrayNuevo=deleteItem(id,array)
+        setCarrito(arrayNuevo);
+        //actualiza en context:
+        update(arrayNuevo);
+    }
+
+    let total=0;
 
     return (
         <>
-        <h1>soy cart</h1>
+        
+        <div className='containerCart'>
         {
-            itemsCarrito.map((element,indice) => {
-                return <p><span>{element.name+" "}</span><span>{element.cantidad}</span></p>
+            getCantidad() == 0
+            ? <p>No hay elementos en el carrito. <Link to="/" className='link'>MENÚ PRINCIPAL</Link></p>
+            : 
+            carrito.map((element,indice) => {
+                total=total+element.cantidad*element.price;
+                
+                return <p key={indice}><span>{element.name+" "}</span><span>{" ("+element.cantidad+") "}</span><span> - {"$"+element.price*element.cantidad}</span>
+                <button className='link botonBorrar' onClick={() => manejarClick(element.id,carrito)}>ELIMINAR</button>
+                </p>
             })
+             
         }
+            {total>0 && <p className="total">TOTAL: {"$"+total}</p>}
+        </div>
         
         </>
     )

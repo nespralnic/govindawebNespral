@@ -36,12 +36,12 @@ h1{
     justify-content:right;
     align-items: center;
 }
-a{
+.links{
     padding-right: 21px;
     text-decoration: none;
     color: white;
 }
 
-a:hover{
+.links:hover{
     color: black;
 }

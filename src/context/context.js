@@ -10,7 +10,7 @@ const CustomProvider = ({children}) =>{
     const [itemsCarrito,setItem] = useState([]);
 
     //falta la condición para no superar el stock !!
-    const addItem = (id,cantidad,name) => {
+    const addItem = (id,cantidad,name,price) => {
       
             let itemsCarritoCopy = [...itemsCarrito];
             //condicion para ver si el producto está en el carrito
@@ -21,14 +21,14 @@ const CustomProvider = ({children}) =>{
                 itemsCarritoCopy = deleteItem(id,itemsCarrito);
             }
 
-            itemsCarritoCopy.push({"id":id,"cantidad":cantidad+cantidadPrevia, "name":name});
+            itemsCarritoCopy.push({"id":id,"cantidad":cantidad+cantidadPrevia, "name":name, "price":price});
             
             setItem(itemsCarritoCopy);
 
         
     };
 
-    //console.log(itemsCarrito);
+    console.log(itemsCarrito);
 
     const deleteItem = (id,array) =>{
         console.log("función borrar");
@@ -44,14 +44,23 @@ const CustomProvider = ({children}) =>{
         )
         
     };
-    const getCantidad = (id) => {
-        console.log("función devuelve cantidad de items")
+    const getCantidad = () => {
+        
+        let cantidad=0;
+        itemsCarrito.forEach(element => {
+            cantidad=cantidad+element.cantidad
+        })
+        return cantidad;
+    };
+
+    const update = (array) => {
+        setItem(array)
     };
 
     //pasamos el state como parámetro value
     return (
 
-     <Provider value={{itemsCarrito,addItem,deleteItem,getCantidad}}>{children}</Provider>
+     <Provider value={{itemsCarrito,addItem,deleteItem,getCantidad,update}}>{children}</Provider>
     )    
 }
 
