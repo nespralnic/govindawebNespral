@@ -87,15 +87,17 @@ const ItemListContainer = (props) => {
 
     useEffect( () => {
         //condicion para poder hacer el query
+        //PROBAR CON TRY Y ASYNC
         if (category){
-            const categoryQuery = query(productosCollection, 
-                where("category","!=",""),where("category","==",category));
+            const categoryQuery = query(productosCollection, where("category","==",category));
             
-                getDocs(categoryQuery)
+
+            getDocs(categoryQuery)
                 .then((result)=>{
                 //devuelve un array:
                 const docs = result.docs;
                 //recorrer el array ( función data() para cada posición del array):
+                //si no encuentra no da error, solo viene vacío (validar?)
                 const lista = docs.map(prod => {
                     //agregando el id
                     const id = prod.id;
@@ -113,6 +115,7 @@ const ItemListContainer = (props) => {
                 }).catch( () => {
                 console.log("todo mal")
             });
+                
 
         }
             

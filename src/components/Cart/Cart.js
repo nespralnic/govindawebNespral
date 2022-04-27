@@ -1,15 +1,23 @@
 import { contexto } from '../../context/context';
-import { useContext,useState } from 'react';
-import { Link, NavLink } from "react-router-dom"
+import { useContext,useEffect,useState } from 'react';
+import { Link, NavLink } from "react-router-dom";
 
-import "./Cart.css"
+import "./Cart.css";
+
+import { addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
+import { db } from "../../firebase/firebase";
+
+
 
 
 const Cart = () =>{
 
-    const {itemsCarrito,deleteItem,update,getCantidad} = useContext(contexto);
+
+    // --- display del carrito
+    const {itemsCarrito,deleteItem,update,getCantidad,deleteCarrito} = useContext(contexto);
 
     const [carrito,setCarrito] = useState(itemsCarrito);
+    const [modalActivo,setmodalActivo] = useState(false);
 
     const manejarClick = (id,array) =>{
         const arrayNuevo=deleteItem(id,array)
@@ -19,6 +27,49 @@ const Cart = () =>{
     }
 
     let total=0;
+
+    // -- finalizar compra
+
+    const comprador = {
+        nombre: "nico",
+        apellido: "rams",
+        email: "nicorams@gmail.com"
+    }
+
+    const [idVenta,setIdVenta] = useState();
+    
+    const finalizarCompra = () => {
+        console.log("finalizando compra");
+        //donde apunta en firebase
+        const ventaCollection = collection(db, "ventas")  
+        addDoc(ventaCollection, {
+            comprador,
+            total,
+            date: serverTimestamp()
+        })      
+        //promesa que devuelve un ID
+        .then(result =>{
+            setIdVenta(result.id)
+        });
+
+        itemsCarrito.forEach(element => {
+            const orderDoc = doc(db, "productos",element.id);
+            let nuevoStock = element.stock - element.cantidad;
+
+            updateDoc(orderDoc,{stock:nuevoStock} )
+            
+        });
+        deleteCarrito();
+        setmodalActivo(!modalActivo)
+
+
+    }
+    
+        //
+
+
+    
+
 
     return (
         <>
@@ -37,8 +88,28 @@ const Cart = () =>{
             })
              
         }
-            {total>0 && <p className="total">TOTAL: {"$"+total}</p>}
+            
+        {
+            total>0 && <p className="total">TOTAL: {"$"+total}</p>
+        }
+        {   total>0 && <p className="contenedorBoton1"><button className="boton1" onClick={()=>{setmodalActivo(!modalActivo)}}>
+            {
+                !modalActivo 
+                    ? ">>>"
+                    : "<<<"     
+            }
+            </button></p>
+        }
+           
+        {
+            modalActivo 
+            ? <div className='modal'>
+                <button onClick={finalizarCompra}>FINALIZAR COMPRA</button>
+            </div>
+            : ""
+        }
         </div>
+        
         
         </>
     )
