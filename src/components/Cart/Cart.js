@@ -6,6 +6,7 @@ import "./Cart.css";
 
 import { addDoc, collection, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
 import { db } from "../../firebase/firebase";
+import { onLog } from 'firebase/app';
 
 
 
@@ -18,6 +19,7 @@ const Cart = () =>{
 
     const [carrito,setCarrito] = useState(itemsCarrito);
     const [modalActivo,setmodalActivo] = useState(false);
+    const [modalFinalActivo,setmodalFinalActivo] = useState(false);
 
     const manejarClick = (id,array) =>{
         const arrayNuevo=deleteItem(id,array)
@@ -30,28 +32,44 @@ const Cart = () =>{
 
     // -- finalizar compra
 
-    const comprador = {
-        nombre: "nico",
-        apellido: "rams",
-        email: "nicorams@gmail.com"
-    }
+    
+
 
     const [idVenta,setIdVenta] = useState();
     
-    const finalizarCompra = () => {
+    //error en el formulario
+    const [formError,setformError] =useState("");
+
+    const [datos,setDatos] = useState({});
+
+
+    const finalizarCompra = (event) => {
+        event.preventDefault();
+
+        if ((datos.data !== datos.dataCheck) || (datos == {}) || (datos.data == "")){
+            
+            console.log("datos incongruentes");
+            setformError("DATOS INCOGRUENTES");
+            //console.log(formError);
+            return false;
+        }
+
         console.log("finalizando compra");
         //donde apunta en firebase
         const ventaCollection = collection(db, "ventas")  
         addDoc(ventaCollection, {
-            comprador,
+            datos,
             total,
+            itemsCarrito,
             date: serverTimestamp()
+            
         })      
         //promesa que devuelve un ID
         .then(result =>{
             setIdVenta(result.id)
         });
 
+        //actualiza el stock en fb
         itemsCarrito.forEach(element => {
             const orderDoc = doc(db, "productos",element.id);
             let nuevoStock = element.stock - element.cantidad;
@@ -60,16 +78,28 @@ const Cart = () =>{
             
         });
         deleteCarrito();
-        setmodalActivo(!modalActivo)
+        setDatos({});
+        setmodalActivo(!modalActivo);
+        setmodalFinalActivo(!modalFinalActivo)
 
 
     }
     
         //
 
+        
 
+        const handleInput = (event) => {
+            //console.log(event.target.name)
+            //console.log(event.target.value)
+
+            setDatos({
+                ...datos,
+                [event.target.name] : event.target.value
+            })
+        }    
     
-
+        console.log(datos);
 
     return (
         <>
@@ -92,23 +122,45 @@ const Cart = () =>{
         {
             total>0 && <p className="total">TOTAL: {"$"+total}</p>
         }
-        {   total>0 && <p className="contenedorBoton1"><button className="boton1" onClick={()=>{setmodalActivo(!modalActivo)}}>
+        {   total>0 && <p className="contenedorBoton1"><button className="boton1" onClick={()=>{setmodalActivo(!modalActivo);setformError("")}}>
             {
+                
                 !modalActivo 
                     ? ">>>"
-                    : "<<<"     
+                    : "<<<"
+                    
             }
             </button></p>
         }
            
         {
-            modalActivo 
+            modalActivo & getCantidad()!=0
             ? <div className='modal'>
-                <button onClick={finalizarCompra}>FINALIZAR COMPRA</button>
+                <form onSubmit={finalizarCompra}>
+                    <input placeholder='nombre' onChange={handleInput} name='nombre'></input>
+                    <input placeholder='apellido' onChange={handleInput} name='apellido'></input>
+                    <input placeholder='teléfono o email' onChange={handleInput} name='data'></input>
+                    <input placeholder='reingrese teléfono o email' onChange={handleInput} name='dataCheck'></input>
+                    <div className='formError'>{formError}</div>
+                    <button type='submit' >FINALIZAR COMPRA</button>
+                </form>
+                
             </div>
             : ""
         }
+
+        {
+            modalFinalActivo
+            ? <div className='modalFinal'>
+                <p>GRACIAS</p>
+                <p>Su número de orden es {idVenta}</p>
+                <p>Nos comunicaremos por email o teléfono.</p>
+                </div>
+            : ""
+        }
+        
         </div>
+        
         
         
         </>

@@ -1,6 +1,16 @@
 .ItemListBox{
-    display: flex;
+    display: grid;
     margin: 50px auto;
     flex-direction: row;
     justify-content: space-around;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    row-gap: 32px;
+}
+
+.alert{
+    font-size: 19px;
+    color: rgb(241, 89, 72);
+    text-align: center;
+    background-color: rgba(250, 128, 114, 0.137);
 }

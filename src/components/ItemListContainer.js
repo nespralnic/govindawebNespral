@@ -16,13 +16,7 @@ const promesa = new Promise((resolve,reject) =>{
         resolve(productosIniciales);
     }, 3000);
 });
-/*
-const productosFetch = fetch("https://run.mocky.io/v3/4d6732fb-792e-4884-ad50-35c87659a795")
-.then(data => data.json())
-.then(json => json)
 
-console.log(productosFetch);
-*/
 
 const ItemListContainer = (props) => { 
     
@@ -61,9 +55,14 @@ const ItemListContainer = (props) => {
     
     const [productos,setProductos] = useState([]);
     const [show,setShow] = useState(false);
+    const [destacados,setDestacados] = useState([]);
 
     // const respuesta = useParams(); destructurar:
+    
     const {category} = useParams();
+    //vegan o sin tacc
+    const {ops} = useParams();
+
 
     /*
     useEffect( () => {
@@ -83,15 +82,35 @@ const ItemListContainer = (props) => {
     },[category]);
     */
     
+    /// productos destacados
+    useEffect( () =>{
+        
+        const categQuery = query(productosCollection, where ("destacado","==",true));
+        getDocs(categQuery)
+        .then((result)=>{ 
+            const docs = result.docs;
+            const list = docs.map(prod => {
+                const id = prod.id; 
+                const produc = {
+                    id,
+                    ...prod.data()
+                    }   
+                return produc
+                });
+            //setProductos(list)
+            // ACÁ HAY QUE PONER UNA VARIABLE PRODUCTOS DESTACADOS Y LISTO
+            setDestacados(list);
+            
+        });
+    },[]);
+    
 
-
+    //effect por categorías tartas o burgers
     useEffect( () => {
         //condicion para poder hacer el query
-        //PROBAR CON TRY Y ASYNC
         if (category){
             const categoryQuery = query(productosCollection, where("category","==",category));
             
-
             getDocs(categoryQuery)
                 .then((result)=>{
                 //devuelve un array:
@@ -115,25 +134,58 @@ const ItemListContainer = (props) => {
                 }).catch( () => {
                 console.log("todo mal")
             });
-                
-
         }
-            
 
         
-
    
-    },[category]);    
+    },[category]); 
 
 
+    //effect para ops vegan o sinTACC
+    useEffect( () => {
+        if (ops){
+            
+            const categoryQuery = query(productosCollection, where(ops,"==",true));
+            
+            getDocs(categoryQuery)
+                .then((result)=>{
+                const docs = result.docs;
+                const lista = docs.map(prod => {
+                    const id = prod.id;
+                    const product = {
+                        id,
+                        ...prod.data()
+                    }
+                    return product;
+                    });
+                
+                    setProductos(lista);
+                    setShow(false)
+            
+                }).catch( () => {
+                console.log("todo mal")
+            });
+        }
+
+    },[ops]);
+
+    console.log(category);
 
     return(
         <>
-        <p className="ItemListContainer__mensaje">{props.mensaje}</p>
+            
         
-        {!show ?
-            <ItemList productos={productos}></ItemList>
-            : <div className="spinner"><ClipLoader /></div>
+        { 
+            category || ops ? // condición para mostrar o no mensaje de bienvenida
+                !show ?
+                    <ItemList mensaje={[ops,category]} productos={productos}></ItemList>
+                    : <div className="spinner"><ClipLoader /></div> 
+            : <>
+                <p className="ItemListContainer__mensaje">{props.mensaje}</p>
+                <p className="ItemListContainer__mensaje">PRODUCTOS DESTACADOS DEL MES!</p> 
+                <ItemList mensaje={false} productos={destacados} ></ItemList>
+            </>    
+
         }
         
         </>

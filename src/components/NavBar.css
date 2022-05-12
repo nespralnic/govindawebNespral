@@ -37,11 +37,56 @@ h1{
     align-items: center;
 }
 .links{
-    padding-right: 21px;
+    
+    margin-right: 21px;
+    padding-right: 5px;
     text-decoration: none;
     color: white;
 }
-
 .links:hover{
     color: black;
+    
+}
+
+.sublinks{
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+.sublinks:hover{
+    color: black;
+}
+
+
+.linkdesplegable{
+    position:relative;
+    cursor: pointer;
+    
+    
+}
+.linkdesplegable:hover{
+    background-color: rgb(165, 136, 136);
+    transition: background-color 1s;
+    border-radius: 0 20px 0 0;
+}
+
+
+
+.containerdesplegable{
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+}
+
+.linkdesplegable:hover > .containerdesplegable{
+    visibility: visible;
+    list-style: none;
+    padding-left: 0;
+    padding-top: 20px;
+    top: 5px;
+    
+    background-color: rgb(165, 136, 136);
+    transition: background-color 1s;
+
 }

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 .itemContainer{
-    height: 250px;
+    height: 300px;
     width: 180px;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
 }
 
 .itemTitle{
-    height: 33%;
+    height: 50%;
     padding-left: 5px;
     padding-top: 5px;
     font-family: 'Roboto', sans-serif;
@@ -40,14 +40,14 @@
 }
 
 .itemPrice{
-    height: 33%;
+    height: 20%;
     padding-left: 5px;
     font-size: 14px;
     color: rgba(250, 128, 114, 0.555);
 }
 
 .itemDetalles{
-    height: 33%;
+    height: 30%;
     margin: 0 auto;
 }
 
