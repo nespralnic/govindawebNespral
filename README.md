@@ -30,7 +30,7 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`!
-
+https://user-images.githubusercontent.com/99502684/168446866-1ab75c5d-cc36-4e3c-b09e-036bb51a968e.gif
 [Animation](https://user-images.githubusercontent.com/99502684/168446866-1ab75c5d-cc36-4e3c-b09e-036bb51a968e.gif)
 
 
