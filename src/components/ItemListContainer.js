@@ -169,7 +169,6 @@ const ItemListContainer = (props) => {
 
     },[ops]);
 
-    console.log(category);
 
     return(
         <>
@@ -184,6 +183,7 @@ const ItemListContainer = (props) => {
                 <p className="ItemListContainer__mensaje">{props.mensaje}</p>
                 <p className="ItemListContainer__mensaje">PRODUCTOS DESTACADOS DEL MES!</p> 
                 <ItemList mensaje={false} productos={destacados} ></ItemList>
+                
             </>    
 
         }

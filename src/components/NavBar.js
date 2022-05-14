@@ -25,7 +25,7 @@ const NavBar = ({id,links}) => {
                 <div className="links linkdesplegable">Productos
                     <ul className="containerdesplegable">
                     {links.map((element,indice)=>{
-                        return <li><NavLink className="sublinks" key={indice} to={element.tag}>{element.name}</NavLink></li> 
+                        return <li key={indice}><NavLink className="sublinks"  to={element.tag}>{element.name}</NavLink></li> 
                     })} 
                     </ul> 
                 </div>

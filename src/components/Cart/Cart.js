@@ -40,7 +40,7 @@ const Cart = () =>{
     //error en el formulario
     const [formError,setformError] =useState("");
 
-    const [datos,setDatos] = useState({});
+    const [datos,setDatos] = useState({"nombre":"", "apellido":"", "data":"", "datacheck":""});
 
 
     const finalizarCompra = (event) => {
@@ -99,7 +99,7 @@ const Cart = () =>{
             })
         }    
     
-        console.log(datos);
+        //console.log(datos);
 
     return (
         <>
@@ -137,10 +137,10 @@ const Cart = () =>{
             modalActivo & getCantidad()!=0
             ? <div className='modal'>
                 <form onSubmit={finalizarCompra}>
-                    <input placeholder='nombre' onChange={handleInput} name='nombre'></input>
-                    <input placeholder='apellido' onChange={handleInput} name='apellido'></input>
-                    <input placeholder='teléfono o email' onChange={handleInput} name='data'></input>
-                    <input placeholder='reingrese teléfono o email' onChange={handleInput} name='dataCheck'></input>
+                    <input placeholder='nombre' onChange={handleInput} name='nombre' required></input>
+                    <input placeholder='apellido' onChange={handleInput} name='apellido' required></input>
+                    <input placeholder='teléfono o email' onChange={handleInput} name='data' required></input>
+                    <input placeholder='reingrese teléfono o email' onChange={handleInput} name='dataCheck' required></input>
                     <div className='formError'>{formError}</div>
                     <button type='submit' >FINALIZAR COMPRA</button>
                 </form>

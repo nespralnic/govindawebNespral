@@ -16,7 +16,7 @@ const ItemDetail = ({item}) =>{
     const {addItem} = useContext(contexto);
 
     const onAdd = (num,click) =>{
-            console.log(`Seleccionaste ${num} productos.`);
+            //console.log(`Seleccionaste ${num} productos.`);
             cantidadIngresada = num;
             setShowConfirmar(click)
         }

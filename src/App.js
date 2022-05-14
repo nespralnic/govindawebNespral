@@ -18,13 +18,13 @@ import { BrowserRouter, Routes, Route} from "react-router-dom"
 function App() {
 
   const name = "alejandro";
-  const links = ["Nosotros","Productos","Contacto"];
+  
   //o con objeto
-  const linksObj = [
-    {name:"Tartas",tag:"categorys/tartas"},
-    {name:"Burgers",tag:"categorys/burgers"},
-    {name:"Vegan",tag:"filtered/vegan"},
-    {name:"Sin Tacc",tag:"filtered/sintacc"},
+  const links = [
+    {name:"Tartas", tag:"categorys/tartas"},
+    {name:"Burgers", tag:"categorys/burgers"},
+    {name:"Vegan", tag:"filtered/vegan"},
+    {name:"Sin Tacc", tag:"filtered/sintacc"},
   ];
 
   return (
@@ -33,7 +33,7 @@ function App() {
     <CustomProvider>
 
     <BrowserRouter>
-      <NavBar id="1" name={name} links={linksObj}> </NavBar>
+      <NavBar id="1" name={name} links={links}> </NavBar>
       <Routes>
         <Route path="/" element={<ItemListContainer mensaje="Bienvenido a la tienda online de Govinda Comidas" />}></Route>
         <Route path="/categorys/:category" element={<ItemListContainer />}></Route>
